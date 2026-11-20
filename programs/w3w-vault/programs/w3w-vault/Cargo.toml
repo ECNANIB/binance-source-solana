@@ -1,0 +1,12 @@
+[package]
+name = "w3w-vault"
+version = "0.1.0+k1990517"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "w3w_vault"
+
+[dependencies]
+anchor-lang = { version = "=0.31.1", features = ["event-cpi", "lazy-account", "init-if-needed", "anchor-debug"] }
+anchor-spl = "=0.31.1"

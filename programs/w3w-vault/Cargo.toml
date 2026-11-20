@@ -1,0 +1,15 @@
+[workspace]
+members = ["programs/w3w-vault"]
+exclude = ["vendor/solana-system-interface"]
+resolver = "2"
+
+[patch.crates-io]
+solana-system-interface = { path = "vendor/solana-system-interface" }
+
+[profile.release]
+opt-level = 3
+lto = false
+codegen-units = 1
+panic = "abort"
+overflow-checks = true
+incremental = false

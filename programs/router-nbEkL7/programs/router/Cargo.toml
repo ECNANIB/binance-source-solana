@@ -1,0 +1,13 @@
+[package]
+name = "router"
+version = "0.1.0+k611"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "router"
+
+[dependencies]
+anchor-lang = { version = "=0.31.1", features = ["event-cpi"] }
+anchor-spl = "=0.31.1"
+solana-instruction = "2.3.0"

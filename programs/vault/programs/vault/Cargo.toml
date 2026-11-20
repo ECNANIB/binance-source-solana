@@ -1,0 +1,19 @@
+[package]
+name = "vault"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "vault"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+
+[dependencies]
+anchor-lang = { version = "=0.31.1", features = ["event-cpi", "init-if-needed", "anchor-debug", "lazy-account"] }
+anchor-spl = "=0.31.1"

@@ -1,0 +1,12 @@
+[package]
+name = "referral-swap"
+version = "0.1.0+k3237"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "referral_swap"
+
+[dependencies]
+anchor-lang = { version = "=0.31.1", features = ["anchor-debug", "event-cpi", "init-if-needed"] }
+anchor-spl = "=0.31.1"

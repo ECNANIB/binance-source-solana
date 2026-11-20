@@ -1,0 +1,16 @@
+[workspace]
+members = ["programs/router"]
+exclude = ["_inputs"]
+resolver = "2"
+
+[profile.release]
+opt-level = 3
+lto = false
+codegen-units = 1
+panic = "abort"
+overflow-checks = true
+incremental = false
+
+[patch.crates-io]
+solana-cpi = { path = "_inputs/vendor/solana-cpi" }
+solana-system-interface = { path = "_inputs/vendor/solana-system-interface" }

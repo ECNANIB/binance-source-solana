@@ -1,0 +1,16 @@
+[workspace]
+members = ["programs/referral-swap"]
+resolver = "2"
+exclude = ["_inputs"]
+
+[profile.release]
+opt-level = 3
+lto = false
+codegen-units = 1
+panic = "abort"
+overflow-checks = true
+incremental = false
+
+[patch.crates-io]
+solana-system-interface = { path = "_inputs/vendor/solana-system-interface" }
+solana-cpi = { path = "_inputs/vendor/solana-cpi" }
