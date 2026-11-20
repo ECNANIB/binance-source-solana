@@ -1,9 +1,25 @@
-# binance-source-solana
+<p align="center">
+  <img src="assets/banner.png" alt="ECNANIB: UFAS ERA SDNUF" width="100%">
+</p>
 
-Binance runs its Solana programs closed source: no published code, no verified builds, no on-chain IDL.
+<h1 align="center">
+  <img src="assets/icon.png" alt="" width="36" valign="middle">&nbsp;binance-source-solana
+</h1>
 
-This repository is source for eleven of them. Every one compiles **byte-for-byte** to the binary deployed on
-mainnet. Don't take our word for it: build them and compare (see [Check it yourself](#check-it-yourself)).
+<p align="center">
+  <img src="https://img.shields.io/badge/byte--identical-11%20programs-2ea043" alt="byte-identical: 11 programs">
+  <img src="https://img.shields.io/badge/in%20progress-3-d29922" alt="in progress: 3">
+  <img src="https://img.shields.io/badge/Binance%20verified%20builds-0-cf222e" alt="Binance verified builds: 0">
+  <img src="https://img.shields.io/badge/Solana-mainnet-9945FF?logo=solana&logoColor=white" alt="Solana mainnet">
+  <img src="https://img.shields.io/badge/Rust-Anchor-dea584?logo=rust&logoColor=white" alt="Rust / Anchor">
+  <img src="https://img.shields.io/badge/build-reproducible-0969da" alt="build: reproducible">
+</p>
+
+<p align="center">
+  <b>Binance runs its Solana programs closed source: no published code, no verified builds, no on-chain IDL.</b><br>
+  Here is source for eleven of them. Every one compiles <b>byte-for-byte</b> to the binary deployed on mainnet.<br>
+  Don't take our word for it: <a href="#check-it-yourself">build them and compare</a>.
+</p>
 
 ## Programs
 
@@ -57,18 +73,28 @@ every one of the first five before handing it to its production authority. All e
 
 ## What each program does
 
+Click a program to expand it.
+
 Most of these programs share one design: tokens sit in a single program-owned account (`token_holder`), and
 only keys on an allow-list stored in the program's config can move them. Many actions also need a secp256k1
 (Ethereum-style) signature from a key in that config, over a message that names the chain, the program, the
 action, a single-use nonce and an expiry. Every program can be paused by its admin.
 
-### router
+<a name="router"></a>
+<details>
+<summary><b><code>router</code></b> · <i>Binance Wallet Program</i> · the swap entry point, with fee capture</summary>
+
 *Binance Wallet Program.* The user-facing swap entry point. The user signs; the program calls one of a fixed set
 of approved aggregator programs to do the swap. The `*_fee_log` variants take a fee in basis points, from the input
 or from what the swap delivered, and send it to a fee account whose owner must be on the program's approved list,
 logging an event. Also: batch create and close token accounts, and wrapped-SOL sync. 8 instructions.
 
-### router-nbEkL7
+</details>
+
+<a name="router-nbekl7"></a>
+<details>
+<summary><b><code>router-nbEkL7</code></b> · next <code>router</code> build · positive-slippage capture, dynamic input, delta windows</summary>
+
 The same `router` crate, a later build, deployed under the build wallet. Everything in `router`, plus:
 - **Positive-slippage swaps** (`swap_with_positive_slippage` v1–v4, token and SOL). After the swap, whatever the
   user received above a caller-supplied expected amount (after commission) is moved out of the user's token
@@ -82,14 +108,24 @@ The same `router` crate, a later build, deployed under the build wallet. Everyth
 
 21 instructions.
 
-### w3w-vault
+</details>
+
+<a name="w3w-vault"></a>
+<details>
+<summary><b><code>w3w-vault</code></b> · Web3 Wallet vault · operator-run swaps out of a pooled account</summary>
+
 "W3W" is Binance's short name for its Web3 Wallet. Holds pooled tokens. Allow-listed operator keys swap the pool's
 tokens through an approved aggregator and deliver the output to a user's token account (`swap_to_token`,
 `swap_to_sol`, and `_v2` versions), with a single-use nonce, an expiry and a per-token maximum trade size. Operators
 can also move funds to approved rebalance addresses (`rebalance_out`, `rebalance_out_sol`). Admin: trade-token
 list, secp256k1 keys, pause, emergency withdraw. 20 instructions.
 
-### cloud-wallet
+</details>
+
+<a name="cloud-wallet"></a>
+<details>
+<summary><b><code>cloud-wallet</code></b> · <i>Binance Alpha 2.0 Program 2</i> · pooled custody, signature-gated withdrawals</summary>
+
 *Binance Alpha 2.0 Program 2.* Pooled custody. Deposits go into one program-owned account and emit an event
 tagged with a Binance account id and deposit id; `user_deposit` additionally needs a Binance-signed authorization.
 Withdrawals (`withdraw`, `withdraw_v2`) and swaps are sent by allow-listed operator keys and must carry a
@@ -99,39 +135,76 @@ withdrawal. `quick_withdraw` lets a separate set of operator keys pull funds wit
 approved aggregators. Admin: pause, emergency withdraw, ownership transfer, allow-lists, `upgrade_to_v4`.
 29 instructions.
 
-### cloud-wallet-9s8e9k
+</details>
+
+<a name="cloud-wallet-9s8e9k"></a>
+<details>
+<summary><b><code>cloud-wallet-9s8e9k</code></b> · earlier <code>cloud-wallet</code> build</summary>
+
 An earlier build of `cloud-wallet` under the build wallet: it has `upgrade_to_v3` but not `upgrade_to_v4` or
 `user_deposit`. 28 instructions.
 
-### memeshot-vault-sol
+</details>
+
+<a name="memeshot-vault-sol"></a>
+<details>
+<summary><b><code>memeshot-vault-sol</code></b> · <i>Binance Alpha 2.0 Program 1</i> · buys tokens and deposits them into <code>cloud-wallet</code></summary>
+
 *Binance Alpha 2.0 Program 1.* The trading side of Alpha, working with `cloud-wallet`. `buy_to_alpha`: an
 allow-listed operator swaps the vault's tokens through an approved aggregator, then calls `cloud-wallet`'s
 `deposit` with the tokens bought. `sell_to_self_from_alpha`: pulls tokens out of `cloud-wallet` with its
 `quick_withdraw` and swaps them back. Per-token maximum trade size, rebalance out, admin. 16 instructions.
 
-### deposit-agent
+</details>
+
+<a name="deposit-agent"></a>
+<details>
+<summary><b><code>deposit-agent</code></b> · per-account deposit addresses, swept with signed authorizations</summary>
+
 Per-account deposit addresses. Every account id maps to its own program-derived address (`get_address` returns
 it). Allow-listed operator keys sweep tokens from those addresses to one configured destination (`collect_to`),
 each sweep authorized by a secp256k1 signature from a configured key. 9 instructions.
 
-### deposit-agent-5UK8Rc
+</details>
+
+<a name="deposit-agent-5uk8rc"></a>
+<details>
+<summary><b><code>deposit-agent-5UK8Rc</code></b> · the 2026-11-18 <code>deposit-agent</code> build</summary>
+
 A newer build of `deposit-agent` under the build wallet, redeployed on 2026-11-18 alongside three other programs
 under that wallet. Same nine instructions, now built with platform-tools v1.52, with shared helpers split into a
 `utils` library.
 
-### claim
+</details>
+
+<a name="claim"></a>
+<details>
+<summary><b><code>claim</code></b> · signature-gated payouts</summary>
+
 Signature-gated payouts. A user claims an amount when they hold a signed authorization over the program, the claim
 id, the amount, a fee, their address and a deadline. Claim ids are single-use (on-chain bitmaps).
 `claim_token_batch` does the same for tokens. 11 instructions.
 
-### vault
+</details>
+
+<a name="vault"></a>
+<details>
+<summary><b><code>vault</code></b> · payment splitter</summary>
+
 A payment splitter. An allow-listed key pays out of the program-owned account, splitting each payment (one-time
 id) between a configured platform address and a configured split address, in SOL or tokens
 (`split_payment`, `split_payment_token_batch`). 9 instructions.
 
-### referral-swap
+</details>
+
+<a name="referral-swap"></a>
+<details>
+<summary><b><code>referral-swap</code></b> · operator swaps through one configured router</summary>
+
 Allow-listed operator keys swap the program's pooled tokens through one configured router program (`swap`) and
 send tokens and SOL to a configured platform address (`rebalance_to`). 8 instructions.
+
+</details>
 
 ## Check it yourself
 
