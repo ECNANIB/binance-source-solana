@@ -21,6 +21,8 @@
   Don't take our word for it: <a href="#check-it-yourself">build them and compare</a>.
 </p>
 
+<p align="center"><sub>Not affiliated with, endorsed by, or sponsored by Binance. See <a href="#disclaimer">Disclaimer</a>.</sub></p>
+
 ## Programs
 
 | directory | program id | current build deployed (slot) | sha256 of deployed ELF |
@@ -230,3 +232,16 @@ feeds the hash cargo gives every crate, so the bytes depend on it.
   record (arguments, struct fields, locals, helpers) cannot be recovered and may not match Binance's; a few are
   plainly placeholders.
 - **Upgrades.** A redeploy changes the deployed hash; `build.sh` then reports `DIFFER` until the source catches up.
+
+## Disclaimer
+
+- **No affiliation.** This project is independent. It is not affiliated with, endorsed by, sponsored by or
+  associated with Binance or any of its companies. "Binance" and the Binance logo are trademarks of their owner.
+  They appear here only to identify the programs this repository is about, and the header artwork is commentary.
+- **Where the source comes from.** Everything here was derived from program binaries that are publicly deployed
+  on Solana mainnet and downloadable by anyone. No Binance source code, internal documents, credentials or other
+  non-public material was used.
+- **No licence is granted** for any part of this repository that reproduces the deployed programs. It is published
+  for security research, interoperability and independent verification.
+- **No warranty.** Provided as is. Do not deploy these programs or rely on them to hold funds. Nothing here is
+  financial or legal advice.
