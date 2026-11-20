@@ -2,7 +2,7 @@
 
 Binance runs its Solana programs closed source: no published code, no verified builds, no on-chain IDL.
 
-This repository is source for ten of them. Every one compiles **byte-for-byte** to the binary deployed on
+This repository is source for eleven of them. Every one compiles **byte-for-byte** to the binary deployed on
 mainnet. Don't take our word for it: build them and compare (see [Check it yourself](#check-it-yourself)).
 
 ## Programs
@@ -19,14 +19,15 @@ mainnet. Don't take our word for it: build them and compare (see [Check it yours
 | [`claim`](#claim) | `NBAgSorjYjpnWXfJ7SwdhNUrzoXGJ9ysGqoYihrsNgp` | 2025-09-10 (365849928) | `59bd77bfd483cc00…` |
 | [`vault`](#vault) | `nbEursuNQy9R8XeQH7yQYuKvVupqorCTmXJsvWskQGy` | 2025-09-10 (365872329) | `943fe61c44455c9c…` |
 | [`referral-swap`](#referral-swap) | `9VdG8gJNUo5r7MtGb4NHVP8tpnvoGZWJcByTGDXXtbY1` | 2026-03-25 (408735911) | `b3a24037eb26a000…` |
+| [`deposit-agent-5UK8Rc`](#deposit-agent-5uk8rc) | `5UK8RcSv4DiDpHSEsBu8y9qnqzizdyDsNbNpSRdc4Ko` | 2026-11-18 (470780163) | `e8a75939de40feaa…` |
 
 Full hashes are in each `programs/<name>/build.conf`. Directory names are the programs' own crate names, taken
 from the binaries; where two deployed programs are the same crate, the second carries the start of its id.
 
 **Who runs them.** On Solscan, `B3111y…` is labelled *Binance Wallet Program*, `BN111TK…` *Binance Alpha 2.0
 Program 2* and `BN111Jnb…` *Binance Alpha 2.0 Program 1*. The first five programs are held by production upgrade
-authorities. The last five are held by `DqSVfVxQN3sJNmecje6e7b7kesDb2VBuBMK6oXdWF2Mo`, the wallet that deployed
-every one of the first five before handing it to its production authority. All ten are upgradeable.
+authorities. The other six are held by `DqSVfVxQN3sJNmecje6e7b7kesDb2VBuBMK6oXdWF2Mo`, the wallet that deployed
+every one of the first five before handing it to its production authority. All eleven are upgradeable.
 
 ## What each program does
 
@@ -86,6 +87,11 @@ allow-listed operator swaps the vault's tokens through an approved aggregator, t
 Per-account deposit addresses. Every account id maps to its own program-derived address (`get_address` returns
 it). Allow-listed operator keys sweep tokens from those addresses to one configured destination (`collect_to`),
 each sweep authorized by a secp256k1 signature from a configured key. 9 instructions.
+
+### deposit-agent-5UK8Rc
+A newer build of `deposit-agent` under the build wallet, redeployed on 2026-11-18 alongside three other programs
+under that wallet. Same nine instructions, now built with platform-tools v1.52, with shared helpers split into a
+`utils` library.
 
 ### claim
 Signature-gated payouts. A user claims an amount when they hold a signed authorization over the program, the claim
