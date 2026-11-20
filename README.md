@@ -24,6 +24,32 @@ mainnet. Don't take our word for it: build them and compare (see [Check it yours
 Full hashes are in each `programs/<name>/build.conf`. Directory names are the programs' own crate names, taken
 from the binaries; where two deployed programs are the same crate, the second carries the start of its id.
 
+## Progress
+
+Share of each program's functions that compile identical to mainnet. A program is published once all of its
+functions match and the whole binary hashes the same.
+
+| program | progress | functions | |
+|---|---|---|---|
+| [`router`](#router) | `████████████████████` 100% | 334 / 334 | ✅ byte-identical |
+| [`w3w-vault`](#w3w-vault) | `████████████████████` 100% | 478 / 478 | ✅ byte-identical |
+| [`cloud-wallet`](#cloud-wallet) | `████████████████████` 100% | 499 / 499 | ✅ byte-identical |
+| [`memeshot-vault-sol`](#memeshot-vault-sol) | `████████████████████` 100% | 449 / 449 | ✅ byte-identical |
+| [`deposit-agent`](#deposit-agent) | `████████████████████` 100% | 360 / 360 | ✅ byte-identical |
+| [`router-nbEkL7`](#router-nbekl7) | `████████████████████` 100% | 424 / 424 | ✅ byte-identical |
+| [`cloud-wallet-9s8e9k`](#cloud-wallet-9s8e9k) | `████████████████████` 100% | 488 / 488 | ✅ byte-identical |
+| [`claim`](#claim) | `████████████████████` 100% | 375 / 375 | ✅ byte-identical |
+| [`vault`](#vault) | `████████████████████` 100% | 359 / 359 | ✅ byte-identical |
+| [`referral-swap`](#referral-swap) | `████████████████████` 100% | 367 / 367 | ✅ byte-identical |
+| [`deposit-agent-5UK8Rc`](#deposit-agent-5uk8rc) | `████████████████████` 100% | 345 / 345 | ✅ byte-identical |
+| `cloud-wallet-378Ebb` | `███████████████████▉` 99.6% | 505 / 507 | in progress |
+| `memeshot-vault-sol-HSJKDe` | `███████████████████░` 95.4% | 453 / 475 | in progress |
+| `w3w-vault-56fYxT` | `██████████████████▊░` 94.2% | 458 / 486 | in progress |
+
+In progress: `cloud-wallet-378Ebb` (`378EbBbP1XVrR2N4ED7vxVpMbXXiBv9NjYhNjNi8GxeR`), `w3w-vault-56fYxT`
+(`56fYxTwKZRjteZKZQWmVTVzhmtNiHRBdxCFcRAJ9QP4e`) and `memeshot-vault-sol-HSJKDe`
+(`HSJKDego6Ti1gqg3e8DMYD2zgiBkMjHLRZvSEXLNBdHu`), all redeployed by Binance on 2026-11-18. Updated 2026-11-20.
+
 **Who runs them.** On Solscan, `B3111y…` is labelled *Binance Wallet Program*, `BN111TK…` *Binance Alpha 2.0
 Program 2* and `BN111Jnb…` *Binance Alpha 2.0 Program 1*. The first five programs are held by production upgrade
 authorities. The other six are held by `DqSVfVxQN3sJNmecje6e7b7kesDb2VBuBMK6oXdWF2Mo`, the wallet that deployed
