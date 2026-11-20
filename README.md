@@ -7,7 +7,7 @@ mainnet. Don't take our word for it: build them and compare (see [Check it yours
 
 ## Programs
 
-| directory | program id | deployed (slot) | sha256 of deployed ELF |
+| directory | program id | current build deployed (slot) | sha256 of deployed ELF |
 |---|---|---|---|
 | [`router`](#router) | `B3111yJCeHBcA1bizdJjUFPALfhAfSRnAbJzGUtnt56A` | 2026-04-23 (415118680) | `cb1df04a6e0652ac…` |
 | [`w3w-vault`](#w3w-vault) | `BN111AnCthcdPVNJ6jkir9TDaS7xqXT8EhetAmYpNqFt` | 2026-01-14 (393409008) | `dc345765bdf1df17…` |
