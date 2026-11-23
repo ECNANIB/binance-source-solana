@@ -62,11 +62,11 @@ functions match and the whole binary hashes the same.
 | [`deposit-agent-5UK8Rc`](#deposit-agent-5uk8rc) | `████████████████████` 100% | 345 / 345 | ✅ byte-identical |
 | `cloud-wallet-378Ebb` | `███████████████████▉` 99.6% | 505 / 507 | in progress |
 | `memeshot-vault-sol-HSJKDe` | `███████████████████░` 95.4% | 453 / 475 | in progress |
-| `w3w-vault-56fYxT` | `██████████████████▊░` 94.2% | 458 / 486 | in progress |
+| `w3w-vault-56fYxT` | `██████████████████▉░` 94.4% | 459 / 486 | in progress |
 
 In progress: `cloud-wallet-378Ebb` (`378EbBbP1XVrR2N4ED7vxVpMbXXiBv9NjYhNjNi8GxeR`), `w3w-vault-56fYxT`
 (`56fYxTwKZRjteZKZQWmVTVzhmtNiHRBdxCFcRAJ9QP4e`) and `memeshot-vault-sol-HSJKDe`
-(`HSJKDego6Ti1gqg3e8DMYD2zgiBkMjHLRZvSEXLNBdHu`), all redeployed by Binance on 2026-11-18. Updated 2026-11-20.
+(`HSJKDego6Ti1gqg3e8DMYD2zgiBkMjHLRZvSEXLNBdHu`), all redeployed by Binance on 2026-11-18. Updated 2026-11-23.
 
 **Who runs them.** On Solscan, `B3111y…` is labelled *Binance Wallet Program*, `BN111TK…` *Binance Alpha 2.0
 Program 2* and `BN111Jnb…` *Binance Alpha 2.0 Program 1*. The first five programs are held by production upgrade
